@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* --- GLOBAL RESET (NO BLUE HIGHLIGHTS) --- */
+* {
+    /* Removes the blue flash when tapping on mobile/touch screens */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- OVERLAY & UTILS --- */
+#scroll-guard-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.96);
+    
+    /* MAX Z-INDEX: Ensures it sits on top of Instagram */
+    z-index: 2147483647; 
+    
+    display: flex; justify-content: center; align-items: center;
+    font-family: 'Outfit', sans-serif; color: #fff;
+    
+    /* MODERN BLUR */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* DISABLE BLUE SELECTION ARTIFACTS */
+    user-select: none;           
+    -webkit-user-select: none;
+    overscroll-behavior: none;   
+}
+
+/* --- CARDS --- */
+.sg-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.sg-card h2, .sg-card h3 { margin: 10px 0; font-weight: 700; }
+
+/* --- DASHBOARD STATS (NEW) --- */
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+.stat-box {
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.stat-val { font-size: 1.2rem; font-weight: bold; color: #4cc9f0; }
+.stat-label { font-size: 0.8rem; color: #aaa; }
+
+/* --- INPUTS --- */
+input[type="text"], input[type="password"], select {
+    width: 100%; padding: 12px; margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px; color: #fff; font-size: 1rem;
+    font-family: 'Outfit', sans-serif;
+    outline: none; /* No blue outline */
+}
+input:focus, select:focus {
+    border-color: #f72585;
+    box-shadow: 0 0 8px rgba(247, 37, 133, 0.4);
+}
+
+/* --- BUTTONS --- */
+button {
+    font-family: 'Outfit', sans-serif; font-weight: 600;
+    padding: 12px 25px; margin: 8px 0; border: none; border-radius: 8px;
+    cursor: pointer; font-size: 1rem; width: 100%; transition: transform 0.1s;
+    outline: none; /* No blue outline */
+    -webkit-tap-highlight-color: transparent;
+}
+.primary-btn { background: #4cc9f0; color: #000; }
+.secondary-btn { background: transparent; border: 2px solid #f72585; color: #f72585; }
+button:active { transform: scale(0.98); }
+
+/* --- QUIZ GRID --- */
+.options-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;
+}
+.question-text {
+    font-size: 1.1rem; margin-bottom: 20px; text-align: left;
+    color: #e0e0e0; font-weight: 300; line-height: 1.5;
+}
+.opt-btn {
+    padding: 15px; background: rgba(255, 255, 255, 0.05); color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px;
+    font-size: 0.9rem; text-align: left; white-space: normal;
+}
+.opt-btn:hover:not(:disabled) {
+    border-color: #4cc9f0; background: rgba(76, 201, 240, 0.1);
+}
+
+/* --- VIDEO --- */
+.video-wrapper {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin-bottom: 20px; border-radius: 12px;
+    background: #000; border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.video-wrapper iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+
+/* --- TIMER WIDGET (Bottom Right) --- */
+#sg-timer {
+    position: fixed; bottom: 20px; right: 20px;
+    background: rgba(0, 0, 0, 0.85); border: 2px solid #f72585;
+    color: #fff; padding: 6px 12px; border-radius: 30px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+    z-index: 2147483647;
+    box-shadow: 0 0 15px rgba(247, 37, 133, 0.3);
+    backdrop-filter: blur(5px);
+    
+    /* Flex for Buttons */
+    display: flex; align-items: center; gap: 8px;
+    user-select: none;
+}
+
+/* New Round Buttons for Pause/Profile */
+.widget-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0; margin: 0;
+}
+
+.pulse { animation: pulse 1s infinite alternate; }
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 5px #f72585; }
+    100% { transform: scale(1.05); box-shadow: 0 0 15px #f72585; }
+}
+
+/* --- HIDE SCROLLBAR --- */
+::-webkit-scrollbar { width: 0px; background: transparent; }
+/* --- YOUTUBE FOCUS MODE (Hides Distractions) --- */
+body.sg-focus-mode #secondary, 
+body.sg-focus-mode #related, 
+body.sg-focus-mode #comments, 
+body.sg-focus-mode ytd-browse, 
+body.sg-focus-mode ytd-mini-guide-renderer {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.sg-focus-mode #primary {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex;
+    justify-content: center;
+}
+
+body.sg-focus-mode video {
+    /* Ensure video is focus */
+    box-shadow: 0 0 50px rgba(76, 201, 240, 0.2);
+}
+
+/* Floating "Return to Quiz" Button on YouTube */
+#sg-return-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #22c55e;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 999999;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+    font-family: sans-serif;
+    transition: transform 0.2s;
+}
+#sg-return-btn:hover {
+    transform: scale(1.05);
+}
