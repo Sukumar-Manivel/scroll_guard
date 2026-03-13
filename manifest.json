@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "ScrollGuard: The Social LMS",
+  "version": "2.1",
+  "description": "Turn Instagram & YouTube into a learning platform.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.instagram.com/*",
+    "*://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*",
+        "*://*.youtube.com/*"
+      ],
+      "css": [
+        "style.css"
+      ],
+      "js": [
+        "db_data.js",
+        "content.js"
+      ]
+    }
+  ]
+}
